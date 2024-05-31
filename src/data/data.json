@@ -1,0 +1,163 @@
+{
+  "schools": [
+    {
+      "id": "001",
+      "name": "Greenfield Primary",
+      "type": "Primary",
+      "products": ["Zeraki Analytics", "Zeraki Finance"],
+      "county": "Nairobi",
+      "registration_date": "2020-01-15",
+      "contact_info": {
+        "phone": "+254701234567",
+        "email": "info@greenfieldprimary.ac.ke"
+      },
+      "school_balance": 5000,
+      "invoices": [
+        {
+          "invoice_number": "INV001",
+          "invoice_item": "Monthly Subscription",
+          "creation_date": "2023-04-01",
+          "due_date": "2023-04-30",
+          "amount": 2000,
+          "paid_amount": 2000,
+          "balance": 0,
+          "completion_status": "Completed",
+          "days_until_due": 0
+        },
+        {
+          "invoice_number": "INV002",
+          "invoice_item": "Annual Subscription",
+          "creation_date": "2023-05-01",
+          "due_date": "2024-04-30",
+          "amount": 24000,
+          "paid_amount": 20000,
+          "balance": 4000,
+          "completion_status": "Pending",
+          "days_until_due": 334
+        }
+      ],
+      "collections": [
+        {
+          "invoice_number": "INV001",
+          "collection_number": "COL001",
+          "date_of_collection": "2023-04-15",
+          "status": "Valid",
+          "amount": 2000
+        },
+        {
+          "invoice_number": "INV002",
+          "collection_number": "COL002",
+          "date_of_collection": "2023-06-01",
+          "status": "Valid",
+          "amount": 20000
+        }
+      ]
+    },
+    {
+      "id": "002",
+      "name": "Springfield Secondary",
+      "type": "Secondary",
+      "products": ["Zeraki Analytics", "Zeraki Timetable"],
+      "county": "Kisumu",
+      "registration_date": "2018-03-25",
+      "contact_info": {
+        "phone": "+254701765432",
+        "email": "contact@springfieldsecondary.ac.ke"
+      },
+      "school_balance": 10000,
+      "invoices": [
+        {
+          "invoice_number": "INV003",
+          "invoice_item": "Monthly Subscription",
+          "creation_date": "2023-04-01",
+          "due_date": "2023-04-30",
+          "amount": 2500,
+          "paid_amount": 2500,
+          "balance": 0,
+          "completion_status": "Completed",
+          "days_until_due": 0
+        },
+        {
+          "invoice_number": "INV004",
+          "invoice_item": "Annual Subscription",
+          "creation_date": "2023-05-01",
+          "due_date": "2024-04-30",
+          "amount": 30000,
+          "paid_amount": 20000,
+          "balance": 10000,
+          "completion_status": "Pending",
+          "days_until_due": 334
+        }
+      ],
+      "collections": [
+        {
+          "invoice_number": "INV003",
+          "collection_number": "COL003",
+          "date_of_collection": "2023-04-20",
+          "status": "Valid",
+          "amount": 2500
+        },
+        {
+          "invoice_number": "INV004",
+          "collection_number": "COL004",
+          "date_of_collection": "2023-06-10",
+          "status": "Valid",
+          "amount": 20000
+        }
+      ]
+    },
+    {
+      "id": "003",
+      "name": "Prestige IGCSE School",
+      "type": "IGCSE",
+      "products": ["Zeraki Finance", "Zeraki Timetable"],
+      "county": "Mombasa",
+      "registration_date": "2019-09-10",
+      "contact_info": {
+        "phone": "+254701987654",
+        "email": "admin@prestigeigcse.ac.ke"
+      },
+      "school_balance": 15000,
+      "invoices": [
+        {
+          "invoice_number": "INV005",
+          "invoice_item": "Monthly Subscription",
+          "creation_date": "2023-04-01",
+          "due_date": "2023-04-30",
+          "amount": 3000,
+          "paid_amount": 3000,
+          "balance": 0,
+          "completion_status": "Completed",
+          "days_until_due": 0
+        },
+        {
+          "invoice_number": "INV006",
+          "invoice_item": "Annual Subscription",
+          "creation_date": "2023-05-01",
+          "due_date": "2024-04-30",
+          "amount": 36000,
+          "paid_amount": 21000,
+          "balance": 15000,
+          "completion_status": "Pending",
+          "days_until_due": 334
+        }
+      ],
+      "collections": [
+        {
+          "invoice_number": "INV005",
+          "collection_number": "COL005",
+          "date_of_collection": "2023-04-25",
+          "status": "Valid",
+          "amount": 3000
+        },
+        {
+          "invoice_number": "INV006",
+          "collection_number": "COL006",
+          "date_of_collection": "2023-07-01",
+          "status": "Valid",
+          "amount": 21000
+        }
+      ]
+    }
+  ]
+}
