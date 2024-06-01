@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="w-full bg-[#F8F8F9] p-10 overflow-hidden">
-      <div className="flex gap-8 mobile:flex-col" id="collections">
+      <div className="flex gap-8 mobile:flex-col">
         {loading && !schoolsData && <p>Loading...</p>}
         <div className="mt-0 pt-0 w-1/4 mobile:w-full flex flex-col gap-8">
           {!loading && schoolsData && <CollectionStats schools={schoolsData} />}

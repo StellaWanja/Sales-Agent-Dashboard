@@ -19,8 +19,6 @@ const UpcomingInvoices: React.FC<SchoolData> = ({ schools }) => {
     return school;
   });
 
-  console.log(sortedSchools);
-
   return (
     <TableContainer component={Paper}>
       <h2 className="text-center text-[#080808] font-bold text-2xl pt-8">
@@ -31,7 +29,7 @@ const UpcomingInvoices: React.FC<SchoolData> = ({ schools }) => {
           return (
             <>
               <TableHead>
-                <TableRow>
+                <TableRow key={school.id}>
                   <TableCell>School Name</TableCell>
                   <TableCell align="right">Invoice Number:</TableCell>
                   <TableCell align="right">Amount Due: </TableCell>
