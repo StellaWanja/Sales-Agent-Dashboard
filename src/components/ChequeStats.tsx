@@ -12,7 +12,7 @@ const ChequeStats: React.FC<SchoolData> = ({ schools }) => {
   }, 0);
 
   return (
-    <div className="bg-[#FFFFFF]  rounded-md pt-6 pb-6">
+    <div className="bg-[#FFFFFF] rounded-md pt-6 pb-6">
       <div className="w-8 h-8 bg-[#F4F4F4]  rounded ml-6 flex justify-center items-center">
         <CreditCardIcon sx={{ color: "#080808" }} />
       </div>

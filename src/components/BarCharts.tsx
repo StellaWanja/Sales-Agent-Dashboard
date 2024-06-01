@@ -36,17 +36,17 @@ const BarCharts: React.FC<BarChartsProps> = ({ data }) => {
           {
             label: "Primary",
             data: [schoolData.primary, 0, 0],
-            backgroundColor: "#36A2EB",
+            backgroundColor: "#162D43",
           },
           {
             label: "Secondary",
             data: [0, schoolData.secondary, 0],
-            backgroundColor: "#FF6384",
+            backgroundColor: "#3570FF",
           },
           {
             label: "IGCSE",
             data: [0, 0, schoolData.igcse],
-            backgroundColor: "#FFCE56",
+            backgroundColor: "#214464",
           },
         ],
       };
@@ -88,15 +88,15 @@ const BarCharts: React.FC<BarChartsProps> = ({ data }) => {
       };
 
       return (
-        <div key={index} className="w-full md:w-1/3 p-4">
-          <h3 className="text-center mb-2">{productName}</h3>
+        <div key={index} className="w-1/3 mobile:w-full p-10">
+          <h3 className="text-center text-[#080808] font-bold text-xl">{productName}</h3>
           <Bar data={chartData} options={options} />
         </div>
       );
     });
   };
 
-  return <div className="flex flex-wrap">{renderCharts()}</div>;
+  return <div className=" flex flex-row justify-between gap-4 mobile:flex-col ">{renderCharts()}</div>;
 };
 
 export default BarCharts;

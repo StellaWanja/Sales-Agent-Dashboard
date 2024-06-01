@@ -3,6 +3,7 @@ import { Invoice } from "./Invoice";
 import { Collection } from "./Collection";
 
 export interface School {
+  id: Key | null | undefined;
   name: string;
   type: string;
   products: string[];
@@ -15,5 +16,6 @@ export interface School {
 }
 
 export interface SchoolData {
+  [x: string]: any;
   schools: School[];
 }

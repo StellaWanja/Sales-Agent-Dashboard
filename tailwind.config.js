@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        'mobile': {'min': '300px', 'max': '768px'}, // Custom breakpoint for up to 768px
+        'mobile': {'min': '300px', 'max': '1024px'}, // Custom breakpoint for up to 768px
       },
     },
   },

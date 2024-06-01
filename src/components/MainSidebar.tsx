@@ -11,13 +11,8 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import { Link } from "react-router-dom";
 import { School } from "../interfaces/School";
 
-const MainSidebar = () => {
+const MainSidebar = ({ collapsed, onToggle }) => {
   const [schools, setSchools] = useState<School[]>([]);
-  const [collapsed, setCollapsed] = useState(false);
-
-  const handleToggleSidebar = () => {
-    setCollapsed(!collapsed);
-  };
 
   useEffect(() => {
     const fetchSchools = async () => {
@@ -26,27 +21,10 @@ const MainSidebar = () => {
       setSchools(data);
     };
     fetchSchools();
-
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setCollapsed(true);
-      } else {
-        setCollapsed(false);
-      }
-    };
-    handleResize();
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   return (
-    <div className="!bg-[#010C0B] h-100vh m-0 p-0">
+    <div className="!bg-[#010C0B] m-0 fixed h-screen overflow-y-auto">
       <Sidebar collapsed={collapsed}>
         <Menu
           className="bg-[#010C0B] text-[#FDFEFF]"
@@ -80,7 +58,7 @@ const MainSidebar = () => {
             style={{ color: "#FDFEFF" }}
             className="pb-10 pt-5"
             icon={<MenuRoundedIcon />}
-            onClick={handleToggleSidebar}
+            onClick={onToggle}
           >
             <h2> Zeraki</h2>
           </MenuItem>
@@ -90,7 +68,7 @@ const MainSidebar = () => {
             component={<Link to="/" />}
             icon={<GridViewRoundedIcon />}
           >
-            <MenuItem icon={<CollectionsIcon />}>Collections</MenuItem>
+            <MenuItem icon={<CollectionsIcon />} >Collections</MenuItem>
             <MenuItem icon={<HowToRegIcon />}>Sign-ups</MenuItem>
             <MenuItem icon={<AttachMoneyIcon />}>Total Revenue</MenuItem>
             <MenuItem icon={<CreditCardIcon />}>Bounced Cheques</MenuItem>

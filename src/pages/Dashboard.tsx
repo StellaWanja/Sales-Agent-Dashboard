@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { School } from "../interfaces/School";
 import CollectionStats from "../components/CollectionStats";
 import SignupStats from "../components/SignupStats";
@@ -6,16 +6,25 @@ import RevenueStats from "../components/RevenueStats";
 import ChequeStats from "../components/ChequeStats";
 import PieCharts from "../components/PieCharts";
 import BarCharts from "../components/BarCharts";
+import UpcomingInvoices from "../components/UpcomingInvoices";
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
   const [schoolsData, setSchoolsData] = useState<School[]>([]);
+  const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleProductBreakdown = useCallback(
+    (productBreakdownData: Record<string, number>) => {
+      setProduct(productBreakdownData);
+    },
+    []
+  );
 
   // Example data
   const productTargets = {
-    "Zeraki Analytics": { achieved: 75, target: 100 },
-    "Zeraki Finance": { achieved: 50, target: 120 },
-    "Zeraki Timetable": { achieved: 90, target: 110 },
+    "Zeraki Analytics": { achieved: product["Zeraki Analytics"], target: 5 },
+    "Zeraki Finance": { achieved: product["Zeraki Finance"], target: 5 },
+    "Zeraki Timetable": { achieved: product["Zeraki Timetable"], target: 6 },
   };
 
   const productTypeTargets = {
@@ -42,24 +51,41 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[#F8F8F9] p-8 ">
-      <div className="flex gap-8 mobile:flex-col ">
+    <div className="w-full bg-[#F8F8F9] p-10 overflow-hidden">
+      <div className="flex gap-8 mobile:flex-col" id="collections">
         {loading && !schoolsData && <p>Loading...</p>}
-        <div className="mt-0 pt-0 w-1/3 mobile:w-full flex flex-col gap-8">
-        {!loading && schoolsData && <CollectionStats schools={schoolsData} />}
-        {!loading && schoolsData && <ChequeStats schools={schoolsData} />}
-
+        <div className="mt-0 pt-0 w-1/4 mobile:w-full flex flex-col gap-8">
+          {!loading && schoolsData && <CollectionStats schools={schoolsData} />}
+          {!loading && schoolsData && <ChequeStats schools={schoolsData} />}
         </div>
-        {!loading && schoolsData && <SignupStats schools={schoolsData} />}
+        {!loading && schoolsData && (
+          <SignupStats
+            schools={schoolsData}
+            onProductBreakdown={handleProductBreakdown}
+          />
+        )}
         {!loading && schoolsData && <RevenueStats schools={schoolsData} />}
       </div>
 
-      <PieCharts data={productTargets} />
+      <div className="bg-[#ffffff] mt-8">
+        <h2 className="text-center text-[#080808] font-bold text-2xl pt-8">
+          Signup Targets
+        </h2>
+        {!loading && schoolsData && (
+          <PieCharts data={productTargets} schools={schoolsData} />
+        )}
+      </div>
 
-      <h1 className="text-2xl font-bold mb-4">
-        Distribution of Sign-ups Across School Types
-      </h1>
-      <BarCharts data={productTypeTargets} />
+      <div className="bg-[#ffffff] mt-8">
+        <h2 className="text-center text-[#080808] font-bold text-2xl pt-8">
+          Distribution of Sign-ups Across School Types
+        </h2>
+        {!loading && schoolsData && <BarCharts data={productTypeTargets} />}
+      </div>
+
+      <div className="mt-8">
+        {!loading && schoolsData && <UpcomingInvoices schools={schoolsData} />}
+      </div>
     </div>
   );
 };

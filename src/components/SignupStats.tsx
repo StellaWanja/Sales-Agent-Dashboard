@@ -1,14 +1,23 @@
 import SchoolIcon from "@mui/icons-material/School";
 import { SchoolData } from "../interfaces/School";
+import { useEffect } from "react";
 
-const SignupStats: React.FC<SchoolData> = ({ schools }) => {
+interface SignupStatsProps {
+  schools: SchoolData[];
+  onProductBreakdown: (productBreakdownData: Record<string, number>) => void;
+}
+
+const SignupStats: React.FC<SignupStatsProps> = ({
+  schools,
+  onProductBreakdown,
+}) => {
   // Calculate the total number of new school sign-ups
   const totalSignUps = schools.length;
 
   // Calculate the breakdown by product
   const productBreakdown = schools.reduce<Record<string, number>>(
     (acc, school) => {
-      school.products.forEach((product) => {
+      school.products.forEach((product: string | number) => {
         if (!acc[product]) {
           acc[product] = 0;
         }
@@ -19,12 +28,18 @@ const SignupStats: React.FC<SchoolData> = ({ schools }) => {
     {}
   );
 
+  useEffect(() => {
+    onProductBreakdown(productBreakdown);
+  }, [onProductBreakdown]);
+
   return (
     <div className="bg-[#FFFFFF] w-1/3 mobile:w-full rounded-md pb-6">
       <div className="w-8 h-8 bg-[#F4F4F4] rounded mt-6 ml-6 flex justify-center items-center">
         <SchoolIcon sx={{ color: "#080808" }} />
       </div>
-      <p className="ml-6 mt-4 text-[#080808]">Total Number of New School Sign-ups</p>
+      <p className="ml-6 mt-4 text-[#080808]">
+        Total Number of New School Sign-ups
+      </p>
       <h2 className="ml-6 text-[#080808] font-bold text-4xl">{totalSignUps}</h2>
       <p className="ml-6 mt-4 text-[#080808]">Breakdown by Product:</p>
       <ul>
