@@ -3,6 +3,7 @@ import "./App.css";
 import MainSidebar from "./components/MainSidebar";
 import Dashboard from "./pages/Dashboard";
 import SchoolManagement from "./pages/SchoolManagement";
+import Error from "./pages/Error";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="school-management" element={<SchoolManagement />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );
