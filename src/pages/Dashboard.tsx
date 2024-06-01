@@ -20,7 +20,7 @@ const Dashboard: React.FC = () => {
     []
   );
 
-  // Example data
+  // Product Targets
   const productTargets = {
     "Zeraki Analytics": { achieved: product["Zeraki Analytics"], target: 5 },
     "Zeraki Finance": { achieved: product["Zeraki Finance"], target: 5 },
@@ -28,10 +28,24 @@ const Dashboard: React.FC = () => {
   };
 
   const productTypeTargets = {
-    "Zeraki Analytics": { primary: 50, secondary: 30, igcse: 20 },
-    "Zeraki Finance": { primary: 40, secondary: 35, igcse: 25 },
-    "Zeraki Timetable": { primary: 45, secondary: 40, igcse: 15 },
+    "Zeraki Analytics": { primary: 0, secondary: 0, igcse: 0 },
+    "Zeraki Finance": { primary: 0, secondary: 0, igcse: 0 },
+    "Zeraki Timetable": { primary: 0, secondary: 0, igcse: 0 },
   };
+
+  schoolsData.forEach((school) => {
+    school.products.forEach((product) => {
+      if (productTypeTargets[product]) {
+        if (school.type === "Primary") {
+          productTypeTargets[product].primary += 1;
+        } else if (school.type === "Secondary") {
+          productTypeTargets[product].secondary += 1;
+        } else {
+          productTypeTargets[product].igcse += 1;
+        }
+      }
+    });
+  });
 
   useEffect(() => {
     const fetchSchools = async () => {

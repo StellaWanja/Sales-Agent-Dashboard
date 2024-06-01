@@ -1,35 +1,34 @@
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { SchoolData } from "../interfaces/School";
 
+interface RevenuePerProduct {
+  'Zeraki Analytics': number;
+  'Zeraki Finance': number;
+  'Zeraki Timetable': number;
+}
+
 const RevenueStats: React.FC<SchoolData> = ({ schools }) => {
   // Calculate the overall revenue collected and revenue per product
-  const revenueBreakdown = schools.reduce<Record<string, number>>(
-    (acc, school) => {
+  let overallRevenue = 0;
+  const revenuePerProduct:RevenuePerProduct= {
+    "Zeraki Analytics": 0,
+    "Zeraki Finance": 0,
+    "Zeraki Timetable": 0,
+  };
+  schools.forEach((school) => {
+    school.invoices.forEach((invoice) => {
+      overallRevenue += invoice.amount;
       school.products.forEach((product) => {
-        if (!acc[product]) {
-          acc[product] = 0;
-        }
+        revenuePerProduct[product as keyof RevenuePerProduct] += invoice.amount / school.products.length;
       });
-
-      school.collections.forEach((collection) => {
-        const equalShare = collection.amount / school.products.length;
-        school.products.forEach((product) => {
-          acc[product] += equalShare;
-        });
-      });
-
-      return acc;
-    },
-    {}
-  );
-
-  const overallRevenue = Object.values(revenueBreakdown).reduce(
-    (total, amount) => total + amount,
-    0
-  );
+    });
+  });
 
   return (
-    <div className="bg-[#FFFFFF] w-1/3 mobile:w-full rounded-md pb-6">
+    <div
+      id="revenue-stats"
+      className="bg-[#FFFFFF] w-1/3 mobile:w-full rounded-md pb-6"
+    >
       <div className="w-8 h-8 bg-[#F4F4F4] rounded mt-6 ml-6 flex justify-center items-center">
         <AttachMoneyIcon sx={{ color: "#080808" }} />
       </div>
@@ -39,9 +38,9 @@ const RevenueStats: React.FC<SchoolData> = ({ schools }) => {
       </h2>
       <p className="ml-6 mt-4 text-[#080808]">Revenue Breakdown by Product:</p>
       <ul>
-        {Object.keys(revenueBreakdown).map((product, index) => (
+        {Object.keys(revenuePerProduct).map((product, index) => (
           <li key={index} className="ml-6 mt-1 text-[#080808] font-bold">
-            {product}: {revenueBreakdown[product].toFixed(2)}
+            {product}: {revenuePerProduct[product  as keyof RevenuePerProduct].toFixed(2)}
           </li>
         ))}
       </ul>

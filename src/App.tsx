@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import "./App.css";
 import MainSidebar from "./components/MainSidebar";
 import Dashboard from "./pages/Dashboard";
@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
@@ -26,11 +29,19 @@ function App() {
     // Add event listener
     window.addEventListener("resize", handleResize);
 
+    const hash = location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
     // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [location.hash]);
 
   return (
     <div className="flex m-0 w-full">

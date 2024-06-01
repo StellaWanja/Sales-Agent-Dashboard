@@ -1,5 +1,4 @@
-
-const FilterInvoices = ({filter, setFilter}) => {
+const FilterInvoices = ({ filter, setFilter }) => {
   return (
     <>
       <label>Filter: </label>

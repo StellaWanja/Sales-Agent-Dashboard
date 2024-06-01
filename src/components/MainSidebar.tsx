@@ -68,10 +68,10 @@ const MainSidebar = ({ collapsed, onToggle }) => {
             component={<Link to="/" />}
             icon={<GridViewRoundedIcon />}
           >
-            <MenuItem icon={<CollectionsIcon />} >Collections</MenuItem>
-            <MenuItem icon={<HowToRegIcon />}>Sign-ups</MenuItem>
-            <MenuItem icon={<AttachMoneyIcon />}>Total Revenue</MenuItem>
-            <MenuItem icon={<CreditCardIcon />}>Bounced Cheques</MenuItem>
+            <MenuItem icon={<CollectionsIcon />} component={<Link to="/#collection-stats" />} >Collections</MenuItem>
+            <MenuItem icon={<HowToRegIcon />} component={<Link to="/#signup-stats" />} >Sign-ups</MenuItem>
+            <MenuItem icon={<AttachMoneyIcon />} component={<Link to="/#revenue-stats" />}>Total Revenue</MenuItem>
+            <MenuItem icon={<CreditCardIcon />}  component={<Link to="/#bounced-cheques-stats" />}>Bounced Cheques</MenuItem>
           </SubMenu>
           <SubMenu
             label="Schools"
@@ -80,7 +80,7 @@ const MainSidebar = ({ collapsed, onToggle }) => {
           >
             {schools.map((school, index) => {
               return (
-                <MenuItem key={index} icon={<LocationCityIcon />}>
+                <MenuItem component={<Link to="/school-management/#school-detail" />} key={index} icon={<LocationCityIcon />}>
                   {school.name}
                 </MenuItem>
               );

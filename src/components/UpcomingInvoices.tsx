@@ -30,10 +30,18 @@ const UpcomingInvoices: React.FC<SchoolData> = ({ schools }) => {
             <>
               <TableHead>
                 <TableRow key={school.id}>
-                  <TableCell>School Name</TableCell>
-                  <TableCell align="right">Invoice Number:</TableCell>
-                  <TableCell align="right">Amount Due: </TableCell>
-                  <TableCell align="right">Due Date:</TableCell>
+                  <TableCell>
+                    <span className="font-bold text-xl">School Name</span>
+                  </TableCell>
+                  <TableCell align="right">
+                    <span className="font-bold text-xl">Invoice Number:</span>
+                  </TableCell>
+                  <TableCell align="right">
+                    <span className="font-bold text-xl">Amount Due: </span>
+                  </TableCell>
+                  <TableCell align="right">
+                    <span className="font-bold text-xl">Due Date:</span>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

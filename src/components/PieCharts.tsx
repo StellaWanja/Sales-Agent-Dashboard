@@ -65,7 +65,7 @@ const PieCharts: React.FC<PieChartsProps> = ({ data }) => {
   };
 
   return (
-    <div className=" flex flex-row justify-between mobile:flex-col ">
+    <div id="signup-stats"  className=" flex flex-row justify-between mobile:flex-col ">
       {renderCharts()}
     </div>
   );

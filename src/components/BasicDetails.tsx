@@ -6,6 +6,10 @@ interface SchoolDetailsProps {
 }
 
 const BasicDetails: React.FC<SchoolDetailsProps> = ({ school }) => {
+  const balance = school.invoices.reduce((acc, inv) => {
+    return (acc += Number(inv.balance));
+  }, 0);
+
   return (
     <div>
       <h2 className="text-[#080808] font-bold text-2xl">{school.name}</h2>
@@ -29,8 +33,7 @@ const BasicDetails: React.FC<SchoolDetailsProps> = ({ school }) => {
       </p>
       <p className="text-[#080808]">
         {" "}
-        <span className="font-bold">School Balance:</span>{" "}
-        {school.school_balance}
+        <span className="font-bold">School Balance:</span> {balance}
       </p>
     </div>
   );

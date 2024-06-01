@@ -1,3 +1,5 @@
+import { Collection } from "./Collection";
+
 export interface Invoice {
   invoice_number: string;
   invoice_item: string;
@@ -8,4 +10,5 @@ export interface Invoice {
   balance: number;
   completion_status: string;
   days_until_due: number;
+  collections: Collection[];
 }

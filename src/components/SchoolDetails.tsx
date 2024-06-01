@@ -8,7 +8,7 @@ interface SchoolDetailsProps {
 
 const SchoolDetails: React.FC<SchoolDetailsProps> = ({ school }) => {
   return (
-    <div className="bg-[#FFFFFF] px-12 pt-8 pb-8 ">
+    <div id="#school-detail" className="bg-[#FFFFFF] px-12 pt-8 pb-8 ">
       <BasicDetails school={school} />
       <br />
       <Invoices school={school} />

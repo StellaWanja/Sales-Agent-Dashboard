@@ -16,6 +16,19 @@ const Invoices: React.FC<SchoolDetailsProps> = ({ school }) => {
   const [isCreatingInvoice, setIsCreatingInvoice] = useState(false);
   const [invoices, setInvoices] = useState<Invoice[]>(school.invoices);
 
+  const defaultInvoice: Invoice = {
+    invoice_number: "",
+    invoice_item: "",
+    creation_date: new Date().toISOString().split("T")[0],
+    due_date: "",
+    amount: 0,
+    paid_amount: 0,
+    balance: 0,
+    completion_status: "Pending",
+    days_until_due: 0,
+    collections: []
+  };
+
   const filteredInvoices = invoices.filter((invoice) => {
     if (filter === "all") return true;
     return filter === "completed"
@@ -30,10 +43,8 @@ const Invoices: React.FC<SchoolDetailsProps> = ({ school }) => {
       );
       setInvoices(updatedInvoices);
       setEditingInvoice(null);
-      school.invoices = updatedInvoices;
     } else {
       setInvoices([...invoices, invoice]);
-      school.invoices = [...invoices, invoice];
     }
     setIsCreatingInvoice(false);
   };
@@ -42,20 +53,26 @@ const Invoices: React.FC<SchoolDetailsProps> = ({ school }) => {
     const updatedInvoices = invoices.filter(
       (inv) => inv.invoice_number !== invoiceNumber
     );
-    school.invoices = updatedInvoices;
     setInvoices(updatedInvoices);
   };
 
-  const defaultInvoice: Invoice = {
-    invoice_number: "",
-    invoice_item: "",
-    creation_date: new Date().toISOString().split("T")[0],
-    due_date: "",
-    amount: 0,
-    paid_amount: 0,
-    balance: 0,
-    completion_status: "Pending",
-    days_until_due: 0,
+  const handleAddCollection = (
+    invoiceNumber: string,
+    collectionAmount: number
+  ) => {
+    const updatedInvoices = invoices.map((invoice) => {
+      if (invoice.invoice_number === invoiceNumber) {
+        const updatedInvoice = { ...invoice };
+        updatedInvoice.paid_amount += collectionAmount;
+        updatedInvoice.balance -= collectionAmount;
+        // Update completion status based on balance
+        updatedInvoice.completion_status =
+          updatedInvoice.balance === 0 ? "Completed" : "Pending";
+        return updatedInvoice;
+      }
+      return invoice;
+    });
+    setInvoices(updatedInvoices);
   };
 
   return (
@@ -69,8 +86,9 @@ const Invoices: React.FC<SchoolDetailsProps> = ({ school }) => {
         filteredInvoices={filteredInvoices}
         setEditingInvoice={setEditingInvoice}
         handleDeleteInvoice={handleDeleteInvoice}
+        handleAddCollection={handleAddCollection}
       />
-      
+
       <div>
         {isCreatingInvoice && (
           <InvoiceForm

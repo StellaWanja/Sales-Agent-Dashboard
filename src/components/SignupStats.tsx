@@ -1,9 +1,9 @@
 import SchoolIcon from "@mui/icons-material/School";
-import { SchoolData } from "../interfaces/School";
+import { School } from "../interfaces/School";
 import { useEffect } from "react";
 
 interface SignupStatsProps {
-  schools: SchoolData[];
+  schools: School[];
   onProductBreakdown: (productBreakdownData: Record<string, number>) => void;
 }
 
