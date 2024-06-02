@@ -25,7 +25,7 @@ This sales management dashboard is built using React, TypeScript, Tailwind CSS a
   ```
   npm install
   ```
-3. Replace the current API under the **Dashboard** and **SchoolManagement** pages, which can be found under the pages directory, with `http://localhost:3000/schools`.
+3. Replace the current API under the **Dashboard** and **SchoolManagement** pages, which can be found under the pages directory, with **http://localhost:3000/schools**.
 4. Start the JSON Server
     ```
     npx json-server src/data/db.json
@@ -35,12 +35,6 @@ This sales management dashboard is built using React, TypeScript, Tailwind CSS a
     npm run dev
     ```
 6. Open your browser and navigate to http://localhost:5173 to see the application in action.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
 
 ## Key Design Decisions
 1. Using TypeScript ensures type safety throughout the project, making the codebase more robust and less prone to runtime errors.
