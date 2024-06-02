@@ -8,9 +8,11 @@ import PieCharts from "../components/PieCharts";
 import BarCharts from "../components/BarCharts";
 import UpcomingInvoices from "../components/UpcomingInvoices";
 
+type ProductName = "Zeraki Analytics" | "Zeraki Finance" | "Zeraki Timetable";
+
 const Dashboard: React.FC = () => {
   const [schoolsData, setSchoolsData] = useState<School[]>([]);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
 
   const handleProductBreakdown = useCallback(
@@ -27,21 +29,24 @@ const Dashboard: React.FC = () => {
     "Zeraki Timetable": { achieved: product["Zeraki Timetable"], target: 6 },
   };
 
-  const productTypeTargets = {
+  const productTypeTargets: Record<
+    ProductName,
+    { primary: number; secondary: number; igcse: number }
+  > = {
     "Zeraki Analytics": { primary: 0, secondary: 0, igcse: 0 },
     "Zeraki Finance": { primary: 0, secondary: 0, igcse: 0 },
     "Zeraki Timetable": { primary: 0, secondary: 0, igcse: 0 },
   };
 
-  schoolsData.forEach((school) => {
+  schoolsData.forEach((school: School) => {
     school.products.forEach((product) => {
-      if (productTypeTargets[product]) {
+      if (productTypeTargets[product as ProductName]) {
         if (school.type === "Primary") {
-          productTypeTargets[product].primary += 1;
+          productTypeTargets[product as ProductName].primary += 1;
         } else if (school.type === "Secondary") {
-          productTypeTargets[product].secondary += 1;
+          productTypeTargets[product as ProductName].secondary += 1;
         } else {
-          productTypeTargets[product].igcse += 1;
+          productTypeTargets[product as ProductName].igcse += 1;
         }
       }
     });

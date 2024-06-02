@@ -15,12 +15,10 @@ interface SchoolTypeData {
   igcse: number;
 }
 
-interface ProductData {
-  [key: string]: SchoolTypeData;
-}
+type ProductData = Record<string, SchoolTypeData>;
 
 interface BarChartsProps {
-  data: { [productName: string]: ProductData };
+  data: ProductData;
 }
 
 Chart.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
@@ -55,6 +53,7 @@ const BarCharts: React.FC<BarChartsProps> = ({ data }) => {
         plugins: {
           tooltip: {
             callbacks: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               label: function (context: any) {
                 const label = context.dataset.label || "";
                 const value = context.raw || 0;
@@ -63,7 +62,8 @@ const BarCharts: React.FC<BarChartsProps> = ({ data }) => {
             },
           },
         },
-        onClick: (elements: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onClick: ( elements: any) => {
           if (elements.length > 0) {
             const index = elements[0].index;
             const datasetIndex = elements[0].datasetIndex;

@@ -11,7 +11,12 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import { Link } from "react-router-dom";
 import { School } from "../interfaces/School";
 
-const MainSidebar = ({ collapsed, onToggle }) => {
+interface MainSidebarProps {
+  collapsed: boolean;
+  onToggle: () => void;
+}
+
+const MainSidebar: React.FC<MainSidebarProps> = ({ collapsed, onToggle }) => {
   const [schools, setSchools] = useState<School[]>([]);
 
   useEffect(() => {

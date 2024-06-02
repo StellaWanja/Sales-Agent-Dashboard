@@ -1,4 +1,9 @@
-const FilterInvoices = ({ filter, setFilter }) => {
+interface FilterInvoicesProps {
+  filter: "all" | "completed" | "pending";
+  setFilter: React.Dispatch<React.SetStateAction<"all" | "completed" | "pending">>;
+}
+
+const FilterInvoices: React.FC<FilterInvoicesProps> = ({ filter, setFilter }) => {
   return (
     <>
       <label>Filter: </label>

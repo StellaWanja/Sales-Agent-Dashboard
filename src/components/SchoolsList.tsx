@@ -1,8 +1,16 @@
 import React from "react";
 import SchoolIcon from "@mui/icons-material/School";
-import { SchoolData } from "../interfaces/School";
+import { School } from "../interfaces/School";
 
-const SchoolsList: React.FC<SchoolData> = ({ schools, onSelectSchool }) => {
+interface SchoolsListProps {
+  schools: School[];
+  onSelectSchool: (id: string) => void;
+}
+
+const SchoolsList: React.FC<SchoolsListProps> = ({
+  schools,
+  onSelectSchool,
+}) => {
   return (
     <div className="bg-[#FFFFFF] mobile:w-full">
       <h1 className="text-center text-[#080808] font-bold text-2xl pt-8">
@@ -10,7 +18,7 @@ const SchoolsList: React.FC<SchoolData> = ({ schools, onSelectSchool }) => {
       </h1>
 
       <ul className="rounded-md p-6 flex flex-col">
-        {schools.map((school) => (
+        {schools.map((school: School) => (
           <li
             key={school.id}
             className="bg-[#F9F8FE] cursor-pointer rounded-md ml-6 mt-4 text-[#080808] font-bold flex place-items-center"
