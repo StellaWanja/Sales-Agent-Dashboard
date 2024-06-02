@@ -8,7 +8,6 @@ interface CollectionFormProps {
 }
 
 const CollectionForm: React.FC<CollectionFormProps> = ({
-  collection,
   onSave,
   onCancel,
 }) => {
@@ -18,7 +17,6 @@ const CollectionForm: React.FC<CollectionFormProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newCollection: Collection = {
-      invoice_number: collection.invoice_number,
       collection_number: `COL${Date.now()}`,
       date_of_collection: date,
       status: "Valid",

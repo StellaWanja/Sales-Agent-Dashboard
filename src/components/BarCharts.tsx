@@ -63,12 +63,11 @@ const BarCharts: React.FC<BarChartsProps> = ({ data }) => {
             },
           },
         },
-        onClick: (event: any, elements: any) => {
+        onClick: (elements: any) => {
           if (elements.length > 0) {
             const index = elements[0].index;
             const datasetIndex = elements[0].datasetIndex;
             const schoolType = chartData.labels[index];
-            const productType = chartData.datasets[datasetIndex].label;
             const signups = chartData.datasets[datasetIndex].data[index];
 
             alert(

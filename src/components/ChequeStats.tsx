@@ -3,7 +3,17 @@ import { SchoolData } from "../interfaces/School";
 
 const ChequeStats: React.FC<SchoolData> = ({ schools }) => {
   // Calculate the number of bounced cheques
-  const bouncedCheques = 0;
+  let bouncedCheques: number = 0;
+
+  schools.map((school) => {
+    school.invoices.forEach((inv) => {
+      inv.collections.map((collection) => {
+        if (collection.status === "Bounced") {
+          bouncedCheques++;
+        }
+      })
+    })
+  })
 
 
   return (

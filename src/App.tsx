@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import MainSidebar from "./components/MainSidebar";
 import Dashboard from "./pages/Dashboard";
@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
 
