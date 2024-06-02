@@ -55,7 +55,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch("http://localhost:3000/schools");
+        const response = await fetch("https://json-server-schoolsdata.vercel.app/schools");
         const data = await response.json();
         setSchoolsData(data);
       } catch (err) {
