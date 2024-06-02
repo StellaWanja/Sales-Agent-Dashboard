@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import SchoolsList from "../components/SchoolsList";
 import SchoolDetails from "../components/SchoolDetails";
 
+const SCHOOLS_API = "https://json-server-schoolsdata.vercel.app/schools";
+
 const SchoolManagement = () => {
   const [schoolsData, setSchoolsData] = useState<School[]>([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,7 @@ const SchoolManagement = () => {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch("https://json-server-schoolsdata.vercel.app/schools");
+        const response = await fetch(SCHOOLS_API);
         const data = await response.json();
         setSchoolsData(data);
       } catch (err) {

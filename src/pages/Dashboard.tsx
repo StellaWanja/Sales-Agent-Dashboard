@@ -8,6 +8,8 @@ import PieCharts from "../components/PieCharts";
 import BarCharts from "../components/BarCharts";
 import UpcomingInvoices from "../components/UpcomingInvoices";
 
+const SCHOOLS_API = "https://json-server-schoolsdata.vercel.app/schools";
+
 type ProductName = "Zeraki Analytics" | "Zeraki Finance" | "Zeraki Timetable";
 
 const Dashboard: React.FC = () => {
@@ -55,7 +57,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     const fetchSchools = async () => {
       try {
-        const response = await fetch("https://json-server-schoolsdata.vercel.app/schools");
+        const response = await fetch(SCHOOLS_API);
         const data = await response.json();
         setSchoolsData(data);
       } catch (err) {

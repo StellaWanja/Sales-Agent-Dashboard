@@ -65,7 +65,7 @@ const MainSidebar: React.FC<MainSidebarProps> = ({ collapsed, onToggle }) => {
             icon={<MenuRoundedIcon />}
             onClick={onToggle}
           >
-            <h2> Zeraki</h2>
+            <h2> SalesNavigator </h2>
           </MenuItem>
           <SubMenu
             label="Dashboard"
