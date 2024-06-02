@@ -72,7 +72,6 @@ const UpcomingInvoices: React.FC<SchoolData> = ({ schools }) => {
             </>
           );
         })}
-        ;
       </Table>
     </TableContainer>
   );
